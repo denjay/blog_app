@@ -1,0 +1,192 @@
+########################################
+# create by :ding-PC
+# create time :2018-03-02 10:58:54.379361
+########################################
+swagger: "2.0"
+info:
+  description: ""
+  version: v1.0
+  title: test
+#host: localhost:8000
+basePath: /test/v1.0
+tags:
+- name: healthmng
+  description: "健康檢查的api"
+- name: usermng
+  description: ""
+schemes:
+- http
+- https
+paths:
+  /health:
+    get:
+      tags:
+      - healthmng
+      summary: ""
+      description: ""
+      operationId: app.api.v1_0.healthmng.health_get
+      schemes:
+        - http
+        - https
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      responses:
+        200:
+          description: ""
+          schema:
+            type: string
+  /users:
+    get:
+      tags:
+      - usermng
+      summary: ""
+      description: ""
+      operationId: app.api.v1_0.usermng.users_get
+      schemes:
+        - http
+        - https
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: query
+          name: page
+          description: ""
+          required: False
+          type: integer
+          format: int32
+        - in: query
+          name: per_page
+          description: ""
+          required: False
+          type: integer
+          format: int32
+      responses:
+        200:
+          description: ""
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/user"
+    post:
+      tags:
+      - usermng
+      summary: ""
+      description: ""
+      operationId: app.api.v1_0.usermng.users_post
+      schemes:
+        - http
+        - https
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: body
+          name: body
+          description: ""
+          required: True
+          schema:
+            $ref: "#/definitions/user"
+      responses:
+        201:
+          description: ""
+          schema:
+            $ref: "#/definitions/user"
+  /users/{id}:
+    get:
+      tags:
+      - usermng
+      summary: ""
+      description: ""
+      operationId: app.api.v1_0.usermng.users_id_get
+      schemes:
+        - http
+        - https
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: path
+          name: id
+          description: ""
+          required: True
+          type: integer
+          format: int32
+      responses:
+        200:
+          description: ""
+          schema:
+            $ref: "#/definitions/user"
+    put:
+      tags:
+      - usermng
+      summary: ""
+      description: ""
+      operationId: app.api.v1_0.usermng.users_id_put
+      schemes:
+        - http
+        - https
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: path
+          name: id
+          description: ""
+          required: True
+          type: integer
+          format: int32
+        - in: body
+          name: body
+          description: ""
+          required: True
+          schema:
+            $ref: "#/definitions/user"
+      responses:
+        201:
+          description: ""
+          schema:
+            $ref: "#/definitions/user"
+    delete:
+      tags:
+      - usermng
+      summary: ""
+      description: ""
+      operationId: app.api.v1_0.usermng.users_id_delete
+      schemes:
+        - http
+        - https
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: path
+          name: id
+          description: ""
+          required: True
+          type: integer
+          format: int32
+      responses:
+        204:
+          description: ""
+          schema:
+            $ref: "#/definitions/user"
+definitions:
+  user:
+    type: object
+    description: "None"
+    properties:
+      user_id:
+        description: ""
+        type: integer
+        format: int32
+      user_name:
+        description: ""
+        type: string

@@ -1,0 +1,525 @@
+########################################
+# create by :ding-PC
+# create time :2018-03-02 11:58:28.827731
+########################################
+swagger: "2.0"
+info:
+  description: ""
+  version: v1.0
+  title: api
+#host: localhost:8000
+basePath: /api/v1.0
+tags:
+- name: healthmng
+  description: "健康檢查的api"
+- name: usermng
+  description: ""
+- name: articlemng
+  description: ""
+- name: commentmng
+  description: ""
+schemes:
+- http
+- https
+paths:
+  /articles:
+    get:
+      tags:
+      - articlemng
+      summary: ""
+      description: ""
+      operationId: app.api.2_0.articlemng.articles_get
+      schemes:
+        - http
+        - https
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: query
+          name: page
+          description: ""
+          required: False
+          type: integer
+          format: int32
+        - in: query
+          name: per_page
+          description: ""
+          required: False
+          type: integer
+          format: int32
+      responses:
+        200:
+          description: ""
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/article"
+    post:
+      tags:
+      - articlemng
+      summary: ""
+      description: ""
+      operationId: app.api.2_0.articlemng.articles_post
+      schemes:
+        - http
+        - https
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: body
+          name: body
+          description: ""
+          required: True
+          schema:
+            $ref: "#/definitions/article"
+      responses:
+        201:
+          description: ""
+          schema:
+            $ref: "#/definitions/article"
+  /articles/{id}:
+    get:
+      tags:
+      - articlemng
+      summary: ""
+      description: ""
+      operationId: app.api.2_0.articlemng.articles_id_get
+      schemes:
+        - http
+        - https
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: path
+          name: id
+          description: ""
+          required: True
+          type: integer
+          format: int32
+      responses:
+        200:
+          description: ""
+          schema:
+            $ref: "#/definitions/article"
+    put:
+      tags:
+      - articlemng
+      summary: ""
+      description: ""
+      operationId: app.api.2_0.articlemng.articles_id_put
+      schemes:
+        - http
+        - https
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: path
+          name: id
+          description: ""
+          required: True
+          type: integer
+          format: int32
+        - in: body
+          name: body
+          description: ""
+          required: True
+          schema:
+            $ref: "#/definitions/article"
+      responses:
+        201:
+          description: ""
+          schema:
+            $ref: "#/definitions/article"
+    delete:
+      tags:
+      - articlemng
+      summary: ""
+      description: ""
+      operationId: app.api.2_0.articlemng.articles_id_delete
+      schemes:
+        - http
+        - https
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: path
+          name: id
+          description: ""
+          required: True
+          type: integer
+          format: int32
+      responses:
+        204:
+          description: ""
+          schema:
+            $ref: "#/definitions/article"
+  /comments:
+    get:
+      tags:
+      - commentmng
+      summary: ""
+      description: ""
+      operationId: app.api.2_0.commentmng.comments_get
+      schemes:
+        - http
+        - https
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: query
+          name: page
+          description: ""
+          required: False
+          type: integer
+          format: int32
+        - in: query
+          name: per_page
+          description: ""
+          required: False
+          type: integer
+          format: int32
+      responses:
+        200:
+          description: ""
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/comment"
+    post:
+      tags:
+      - commentmng
+      summary: ""
+      description: ""
+      operationId: app.api.2_0.commentmng.comments_post
+      schemes:
+        - http
+        - https
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: body
+          name: body
+          description: ""
+          required: True
+          schema:
+            $ref: "#/definitions/comment"
+      responses:
+        201:
+          description: ""
+          schema:
+            $ref: "#/definitions/comment"
+  /comments/{id}:
+    get:
+      tags:
+      - commentmng
+      summary: ""
+      description: ""
+      operationId: app.api.2_0.commentmng.comments_id_get
+      schemes:
+        - http
+        - https
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: path
+          name: id
+          description: ""
+          required: True
+          type: integer
+          format: int32
+      responses:
+        200:
+          description: ""
+          schema:
+            $ref: "#/definitions/comment"
+    put:
+      tags:
+      - commentmng
+      summary: ""
+      description: ""
+      operationId: app.api.2_0.commentmng.comments_id_put
+      schemes:
+        - http
+        - https
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: path
+          name: id
+          description: ""
+          required: True
+          type: integer
+          format: int32
+        - in: body
+          name: body
+          description: ""
+          required: True
+          schema:
+            $ref: "#/definitions/comment"
+      responses:
+        201:
+          description: ""
+          schema:
+            $ref: "#/definitions/comment"
+    delete:
+      tags:
+      - commentmng
+      summary: ""
+      description: ""
+      operationId: app.api.2_0.commentmng.comments_id_delete
+      schemes:
+        - http
+        - https
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: path
+          name: id
+          description: ""
+          required: True
+          type: integer
+          format: int32
+      responses:
+        204:
+          description: ""
+          schema:
+            $ref: "#/definitions/comment"
+  /health:
+    get:
+      tags:
+      - healthmng
+      summary: ""
+      description: ""
+      operationId: app.api.2_0.healthmng.health_get
+      schemes:
+        - http
+        - https
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      responses:
+        200:
+          description: ""
+          schema:
+            type: string
+  /users:
+    get:
+      tags:
+      - usermng
+      summary: ""
+      description: ""
+      operationId: app.api.2_0.usermng.users_get
+      schemes:
+        - http
+        - https
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: query
+          name: page
+          description: ""
+          required: False
+          type: integer
+          format: int32
+        - in: query
+          name: per_page
+          description: ""
+          required: False
+          type: integer
+          format: int32
+      responses:
+        200:
+          description: ""
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/user"
+    post:
+      tags:
+      - usermng
+      summary: ""
+      description: ""
+      operationId: app.api.2_0.usermng.users_post
+      schemes:
+        - http
+        - https
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: body
+          name: body
+          description: ""
+          required: True
+          schema:
+            $ref: "#/definitions/user"
+      responses:
+        201:
+          description: ""
+          schema:
+            $ref: "#/definitions/user"
+  /users/{id}:
+    get:
+      tags:
+      - usermng
+      summary: ""
+      description: ""
+      operationId: app.api.2_0.usermng.users_id_get
+      schemes:
+        - http
+        - https
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: path
+          name: id
+          description: ""
+          required: True
+          type: integer
+          format: int32
+      responses:
+        200:
+          description: ""
+          schema:
+            $ref: "#/definitions/user"
+    put:
+      tags:
+      - usermng
+      summary: ""
+      description: ""
+      operationId: app.api.2_0.usermng.users_id_put
+      schemes:
+        - http
+        - https
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: path
+          name: id
+          description: ""
+          required: True
+          type: integer
+          format: int32
+        - in: body
+          name: body
+          description: ""
+          required: True
+          schema:
+            $ref: "#/definitions/user"
+      responses:
+        201:
+          description: ""
+          schema:
+            $ref: "#/definitions/user"
+    delete:
+      tags:
+      - usermng
+      summary: ""
+      description: ""
+      operationId: app.api.2_0.usermng.users_id_delete
+      schemes:
+        - http
+        - https
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: path
+          name: id
+          description: ""
+          required: True
+          type: integer
+          format: int32
+      responses:
+        204:
+          description: ""
+          schema:
+            $ref: "#/definitions/user"
+definitions:
+  user:
+    type: object
+    description: "None"
+    properties:
+      user_id:
+        description: ""
+        type: integer
+        format: int32
+      user_name:
+        description: ""
+        type: string
+      user_email:
+        description: ""
+        type: string
+      user_password:
+        description: ""
+        type: string
+  article:
+    type: object
+    description: "None"
+    properties:
+      article_id:
+        description: ""
+        type: integer
+        format: int32
+      article_title:
+        description: ""
+        type: string
+      article_content:
+        description: ""
+        type: string
+      article_date:
+        description: ""
+        type: string
+        format: date
+      click:
+        description: ""
+        type: integer
+        format: int32
+      userid:
+        description: "None"
+        type: integer
+        format: int32
+  comment:
+    type: object
+    description: "None"
+    properties:
+      comment_id:
+        description: ""
+        type: integer
+        format: int32
+      comment_content:
+        description: ""
+        type: string
+      comment_date:
+        description: ""
+        type: string
+        format: date
