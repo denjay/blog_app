@@ -1,0 +1,17 @@
+########################################
+# create by :ding-PC
+# create time :2018-03-05 11:10:12.700517
+########################################
+__pycache__
+.idea
+config.ini
+*.pyc
+*.sqlite
+lib
+*_backup
+docker-compose.yaml
+run.sh
+migrate_run.py
+migrate_run.bat
+migrate_run.sh
+migrations

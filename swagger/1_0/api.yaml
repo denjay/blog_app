@@ -1,6 +1,6 @@
 ########################################
 # create by :ding-PC
-# create time :2018-03-02 15:10:33.780020
+# create time :2018-03-06 14:48:36.712317
 ########################################
 swagger: "2.0"
 info:
@@ -80,7 +80,28 @@ paths:
         201:
           description: ""
           schema:
-            $ref: "#/definitions/article"
+            type: string
+  /articles_hot:
+    get:
+      tags:
+      - articlemng
+      summary: ""
+      description: ""
+      operationId: app.api.1_0.articlemng.articles_hot_get
+      schemes:
+        - http
+        - https
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      responses:
+        200:
+          description: ""
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/article"
   /articles/{id}:
     get:
       tags:
@@ -163,6 +184,65 @@ paths:
           description: ""
           schema:
             $ref: "#/definitions/article"
+  /articles/{id}/comments:
+    post:
+      tags:
+      - articlemng
+      summary: ""
+      description: ""
+      operationId: app.api.1_0.articlemng.articles_id_comments_post
+      schemes:
+        - http
+        - https
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: body
+          name: body
+          description: ""
+          required: True
+          schema:
+            $ref: "#/definitions/comment"
+        - in: path
+          name: id
+          description: ""
+          required: True
+          type: integer
+          format: int32
+      responses:
+        201:
+          description: ""
+          schema:
+            type: string
+    get:
+      tags:
+      - articlemng
+      summary: ""
+      description: ""
+      operationId: app.api.1_0.articlemng.articles_id_comments_get
+      schemes:
+        - http
+        - https
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: path
+          name: id
+          description: ""
+          required: True
+          type: integer
+          format: int32
+      responses:
+        200:
+          description: ""
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/comment"
   /comments:
     get:
       tags:
@@ -323,13 +403,13 @@ paths:
           description: ""
           schema:
             type: string
-  /users:
-    get:
+  /users_login:
+    post:
       tags:
       - usermng
       summary: ""
       description: ""
-      operationId: app.api.1_0.usermng.users_get
+      operationId: app.api.1_0.usermng.users_login_post
       schemes:
         - http
         - https
@@ -338,31 +418,24 @@ paths:
       produces:
         - application/json
       parameters:
-        - in: query
-          name: page
+        - in: body
+          name: body
           description: ""
-          required: False
-          type: integer
-          format: int32
-        - in: query
-          name: per_page
-          description: ""
-          required: False
-          type: integer
-          format: int32
+          required: True
+          schema:
+            $ref: "#/definitions/user"
       responses:
-        200:
+        201:
           description: ""
           schema:
-            type: "array"
-            items:
-              $ref: "#/definitions/user"
+            $ref: "#/definitions/user"
+  /users_register:
     post:
       tags:
       - usermng
       summary: ""
       description: ""
-      operationId: app.api.1_0.usermng.users_post
+      operationId: app.api.1_0.usermng.users_register_post
       schemes:
         - http
         - https
@@ -469,7 +542,7 @@ definitions:
     type: object
     description: "None"
     properties:
-      user_id:
+      id:
         description: ""
         type: integer
         format: int32
@@ -486,7 +559,7 @@ definitions:
     type: object
     description: "None"
     properties:
-      article_id:
+      id:
         description: ""
         type: integer
         format: int32
@@ -505,14 +578,14 @@ definitions:
         type: integer
         format: int32
       userid:
-        description: "None"
+        description: ""
         type: integer
         format: int32
   comment:
     type: object
     description: "None"
     properties:
-      comment_id:
+      id:
         description: ""
         type: integer
         format: int32
@@ -524,10 +597,10 @@ definitions:
         type: string
         format: date-time
       userid:
-        description: "None"
+        description: ""
         type: integer
         format: int32
       articleid:
-        description: "None"
+        description: ""
         type: integer
         format: int32

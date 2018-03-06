@@ -1,62 +1,52 @@
 ########################################
 # create by :ding-PC
-# create time :2018-03-02 15:10:33.234703
+# create time :2018-03-06 14:48:35.801759
 ########################################
 from app import db
-from datetime import datetime, timedelta
+from datetime import datetime,timedelta
 import json
 from enum import Enum
-
-
 class User_base(db.Model):
     __tablename__ = 'user'
-    user_id = db.Column(db.Integer, primary_key=True)
-    user_name = db.Column(db.String(50), unique=True)
+    id = db.Column(db.Integer, primary_key=True)
+    user_name = db.Column(db.String(50), unique= True)
     user_password = db.Column(db.String(50))
-    user_email = db.Column(db.String(50), unique=True)
-
+    user_email = db.Column(db.String(50), unique= True)
+    articles = db.relationship("Article", back_populates="user", foreign_keys="Article.userid", cascade="all, delete-orphan")
     def __repr__(self):
         return json.dumps(self.to_json())
-
     def to_json(self):
         return {key: getattr(self, key) for key in self.__table__.columns.keys()
-                if hasattr(self, key)
-                }
-
-
+                   if hasattr(self,key)
+               }
 class Article_base(db.Model):
     __tablename__ = 'article'
-    article_id = db.Column(db.Integer, primary_key=True)
-    article_title = db.Column(db.String(50), nullable=False)
-    article_content = db.Column(db.String(50), nullable=False)
-    article_date = db.Column(db.DateTime)
-    click = db.Column(db.Integer)
-    userid = db.Column(db.Integer, db.ForeignKey("user.user_id"), nullable=False)
-    user = db.relationship("User", foreign_keys="Article.userid")
-
+    id = db.Column(db.Integer, primary_key=True)
+    article_title = db.Column(db.String(50), nullable= False)
+    article_content = db.Column(db.String(50), nullable= False)
+    article_date = db.Column(db.DateTime, default= datetime.now)
+    click = db.Column(db.Integer, default= 0)
+    userid = db.Column(db.Integer,db.ForeignKey("user.id"), nullable= False)
+    user = db.relationship("User", back_populates="articles", foreign_keys="Article.userid")
+    comments = db.relationship("Comment", back_populates="article", foreign_keys="Comment.articleid", cascade="all, delete-orphan")
     def __repr__(self):
         return json.dumps(self.to_json())
-
     def to_json(self):
         return {key: getattr(self, key) for key in self.__table__.columns.keys()
-                if hasattr(self, key)
-                }
-
-
+                   if hasattr(self,key)
+               }
 class Comment_base(db.Model):
     __tablename__ = 'comment'
-    comment_id = db.Column(db.Integer, primary_key=True)
+    id = db.Column(db.Integer, primary_key=True)
     comment_content = db.Column(db.String(50))
-    comment_date = db.Column(db.DateTime)
-    userid = db.Column(db.Integer, db.ForeignKey("user.user_id"), nullable=False)
-    articleid = db.Column(db.Integer, db.ForeignKey("article.article_id"), nullable=False)
+    comment_date = db.Column(db.DateTime, default= datetime.now)
+    userid = db.Column(db.Integer,db.ForeignKey("user.id"), nullable= False)
+    articleid = db.Column(db.Integer,db.ForeignKey("article.id"), nullable= False)
     user = db.relationship("User", foreign_keys="Comment.userid")
-    article = db.relationship("Article", foreign_keys="Comment.articleid")
-
+    article = db.relationship("Article", back_populates="comments", foreign_keys="Comment.articleid")
     def __repr__(self):
         return json.dumps(self.to_json())
-
     def to_json(self):
         return {key: getattr(self, key) for key in self.__table__.columns.keys()
-                if hasattr(self, key)
-                }
+                   if hasattr(self,key)
+               }

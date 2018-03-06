@@ -8,6 +8,7 @@ from mwutils.mw_consul import DatabaseConf,RedisConfMaster
 
 basedir = os.path.abspath(os.path.dirname(__file__))
 conf_parse  = getConfig(__file__)
+SECRET_KEY = "dingxianjie"
 
 #################################################################
 # 在config.ini中app_config.config=development 时为开发者模式，
