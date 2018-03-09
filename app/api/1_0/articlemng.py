@@ -1,9 +1,9 @@
 ########################################
 # create by :ding-PC
-# create time :2018-03-06 14:48:36.830104
+# create time :2018-03-08 12:02:25.968843
 ########################################
 from copy import deepcopy
-from flask import request
+from flask import request, jsonify
 from app.auths import Auth
 from app import auth, db, p
 from app.models import *
@@ -12,13 +12,14 @@ from app.models import *
 @auth.valid_login
 @p.check("article", ["view"])
 def articles_get(page=None, per_page=None) -> str:
-    datap = Article.query.order_by(Article.id).paginate(page, per_page)
-    return [data.to_json() for data in datap.items], \
-           200, {"content-type": "chatset=utf8", "x-page": datap.page, "x-total": datap.total}
+    articles = Article.query.order_by(Article.id)
+    count = articles.count()
+    datap = articles.paginate(page, per_page)
+    print({"articles": [data.to_json() for data in datap.items], "count": count})
+    return jsonify({"articles": [data.to_json() for data in datap.items], "count": count}), 200, {
+        "content-type": "chatset=utf8", "x-page": datap.page, "x-total": datap.total}
 
 
-# @auth.valid_login
-# @p.check("article", ["insert"])
 @Auth.login_required
 def articles_post(body) -> str:
     try:
@@ -91,7 +92,8 @@ def articles_id_comments_post(body, id) -> str:
         return {'message': '无效令牌'}, 401
     user_id = payload["data"]['id']
     data = eval(request.data)
-    data.update({'userid': user_id, 'articleid': id, 'comment_date': datetime.utcnow()})
+    data.update({'userid': user_id, 'articleid': id,
+                 'comment_date': datetime.utcnow()})
     try:
         comment = Comment(**data)
         db.session.add(comment)
